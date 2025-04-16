@@ -4,7 +4,7 @@ import MainWeather from "./Components/Main-weather.component";
 
 function App() {
   return (
-    <div className="m-0 p-0 bg-sky-500 min-h-screen">
+    <div className="bg-sky-200 min-h-screen flex justify-center font-sans">
       <MainWeather />
     </div>
   );

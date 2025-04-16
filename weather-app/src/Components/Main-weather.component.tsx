@@ -1,10 +1,10 @@
 const MainWeather = () => {
   return (
-    <div className="text-center bg-white p-4 mx-auto w-1/5 flex flex-col items-center">
-      <div className="p-2">18 °C</div>
-      <div>
-        <div className="pt-2">Szombathely</div>
-        <div className="pb-2">Hungary</div>
+    <div className="w-max h-max text-center p-1 border-black">
+      <div className="p-2 text-5xl font-medium">18 °C</div>
+      <div className="p-2">
+        <div className="text-2xl">Szombathely</div>
+        <div className="text-lg font-extralight italic">Hungary</div>
       </div>
     </div>
   );
