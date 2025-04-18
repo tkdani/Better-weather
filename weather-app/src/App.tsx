@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import MainWeather from "./Components/Main-weather.component";
+import FavWeather from "./Components/fav-weather.component";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -15,11 +15,10 @@ function App() {
       .then((weather) => {
         setCurrentWeather(weather);
       });
-  }, [apiKey, name]);
-
+  }, [name]);
   return (
-    <div className="bg-sky-300 p-1 min-h-screen flex justify-center font-sans">
-      <MainWeather weather={currentWeather} />
+    <div className="bg-sky-300 p-2 min-h-screen flex justify-center font-roboto">
+      <FavWeather weather={currentWeather} />
     </div>
   );
 }
