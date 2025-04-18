@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-import React from "react";
-
 import MainWeather from "./Components/Main-weather.component";
 
 function App() {
@@ -11,18 +9,11 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${name}&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${name}&appid=${apiKey}`
     )
       .then((Response) => Response.json())
-      .then((location) => {
-        fetch(
-          `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${location[0]["lat"]}&lon=${location[0]["lon"]}&appid=${apiKey}`
-        )
-          .then((Response) => Response.json())
-          .then((weather) => {
-            setCurrentWeather(weather);
-            console.log(weather);
-          });
+      .then((weather) => {
+        setCurrentWeather(weather);
       });
   }, [apiKey, name]);
 
