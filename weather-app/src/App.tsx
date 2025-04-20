@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import FavWeather from "./Components/fav-weather.component";
+import SearchBar from "./Components/search-bar.component";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -15,10 +16,11 @@ function App() {
       .then((weather) => {
         setCurrentWeather(weather);
       });
-  }, [name]);
+  }, [name, apiKey]);
   return (
-    <div className="bg-sky-300 p-2 min-h-screen flex justify-center font-roboto">
+    <div className="bg-sky-300 p-2 min-h-screen flex flex-col items-center font-roboto">
       <FavWeather weather={currentWeather} />
+      <SearchBar placeholderText="search city" />
     </div>
   );
 }

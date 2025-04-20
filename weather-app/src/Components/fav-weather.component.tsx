@@ -1,16 +1,10 @@
 const FavWeather = (props: any) => {
   const { weather } = props;
 
-  {
-    if (weather.length == 0) {
-      return <div>No weather data</div>;
-    }
-  }
-
   const name: string = weather?.name || "";
   const country: string = weather?.sys?.country || "";
   const temp: number = weather?.main?.temp || 0;
-  const icon: string = weather?.weather[0]?.icon || "";
+  const icon: string = weather?.weather?.[0]?.icon || "";
 
   return (
     <div className="w-max h-max text-center px-5 py-4 relative bg-white/30 border-2 rounded-tl-lg rounded-br-lg">
