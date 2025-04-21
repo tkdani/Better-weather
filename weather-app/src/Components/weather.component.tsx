@@ -1,4 +1,4 @@
-const FavWeather = (props: any) => {
+const Weather = (props: any) => {
   const { weather } = props;
 
   const name: string = weather?.name || "";
@@ -31,4 +31,4 @@ const FavWeather = (props: any) => {
   );
 };
 
-export default FavWeather;
+export default Weather;
