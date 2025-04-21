@@ -18,7 +18,7 @@ function App() {
       });
   }, [name, apiKey]);
   return (
-    <div className="bg-sky-300 min-h-screen font-roboto">
+    <div className="bg-sky-300 min-h-screen font-roboto flex flex-col items-center">
       <SearchBar placeholderText="search city" />
       <Weather weather={currentWeather} />
     </div>
