@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import FavWeather from "./Components/fav-weather.component";
+import Weather from "./Components/weather.component";
 import SearchBar from "./Components/search-bar.component";
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
       });
   }, [name, apiKey]);
   return (
-    <div className="bg-sky-300 p-2 min-h-screen flex flex-col items-center font-roboto">
-      <FavWeather weather={currentWeather} />
+    <div className="bg-sky-300 min-h-screen font-roboto flex flex-col items-center">
       <SearchBar placeholderText="search city" />
+      <Weather weather={currentWeather} />
     </div>
   );
 }
