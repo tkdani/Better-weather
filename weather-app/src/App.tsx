@@ -1,26 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import Weather from "./Components/weather.component";
+import WeatherDetail from "./Components/weather.component";
 import SearchBar from "./Components/search-bar.component";
+import useWeatherFetch from "./useWeatherFetch";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
-  const name: string = "Szombathely";
-  const [currentWeather, setCurrentWeather] = useState([]);
+  const [name, setName] = useState("Szombathely");
+  const { weather, isLoading, error } = useWeatherFetch(name, apiKey);
 
-  useEffect(() => {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${name}&appid=${apiKey}`
-    )
-      .then((Response) => Response.json())
-      .then((weather) => {
-        setCurrentWeather(weather);
-      });
-  }, [name, apiKey]);
   return (
     <div className="bg-sky-300 min-h-screen font-roboto flex flex-col items-center">
       <SearchBar placeholderText="search city" />
-      <Weather weather={currentWeather} />
+      {isLoading && <div>Loading...</div>}
+      {error && <div>ERROR</div>}
+      {weather && <WeatherDetail weather={weather} />}
     </div>
   );
 }
