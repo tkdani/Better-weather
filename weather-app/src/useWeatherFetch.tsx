@@ -30,8 +30,9 @@ const useWeatherFetch = (name: string, apiKey: string | undefined) => {
       `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${name}&appid=${apiKey}`
     )
       .then((response) => {
-        if (!response.ok)
+        if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
+        }
         return response.json();
       })
       .then((data: weatherData) => {

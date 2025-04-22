@@ -14,7 +14,7 @@ const SearchBar = (props: any) => {
     onSearch(inputValue);
   };
   return (
-    <div className="w-1/2 h-max flex flex-row justify-between bg-white/60 border-2 rounded-sm my-10">
+    <div className="w-1/2 h-max flex flex-row justify-between bg-white/60 border-2 rounded-sm mb-10">
       <div className="flex flex-row">
         <input
           type="search"
