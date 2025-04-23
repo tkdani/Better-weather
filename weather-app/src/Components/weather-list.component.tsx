@@ -6,7 +6,7 @@ const WeatherList = (props: any) => {
   return (
     <div className="mt-15 w-11/12 h-max max-auto">
       <div className="w-full border-b-2">
-        <h1 className="bg-white/30 text-black w-max p-2 rounded-tl-xl">
+        <h1 className="bg-white/30 text-black w-max p-2 rounded-tl-xl hover:bg-white/50">
           Favourites
         </h1>
       </div>

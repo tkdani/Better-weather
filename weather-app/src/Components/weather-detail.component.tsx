@@ -10,7 +10,6 @@ const WeatherDetail = (props: weatherProps) => {
   const { weather, onFavClick } = props;
 
   const handleFavClick = () => {
-    console.log("click  ");
     onFavClick(weather);
   };
 

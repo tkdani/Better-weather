@@ -28,10 +28,13 @@ function App() {
         return [...prevFavLocations, { ...location, fav: true }];
       }
     });
+    if (weather && weather.name === location.name) {
+      weather.fav = !weather.fav;
+    }
   };
 
   return (
-    <div className="bg-sky-300 min-h-screen font-roboto flex flex-col items-center">
+    <div className="bg-gradient-to-bl from-white from-10% via-sky-300 via-30% to-sky-500 to-100% min-h-screen font-roboto flex flex-col items-center">
       <h1 className="my-16 font-pacifico text-5xl">Better Weather</h1>
       <SearchBar onSearch={searchLocation} placeholderText="search city" />
       {isLoading && <div>Loading...</div>}
