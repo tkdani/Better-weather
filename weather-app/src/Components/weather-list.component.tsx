@@ -10,17 +10,22 @@ const WeatherList = (props: any) => {
           Favourites
         </h1>
       </div>
-      <div className="grid grid-cols-5 gap-1 mt-4 justify-center">
-        {locations.map((location: Weather) => {
-          return (
-            <WeatherDetail
-              key={location.name}
-              onFavClick={onFavClick}
-              weather={location}
-            />
-          );
-        })}
-      </div>
+
+      {locations.length === 0 ? (
+        <div className="ml-1 font-light italic">No favourites</div>
+      ) : (
+        <div className="grid grid-cols-5 gap-1 mt-4 justify-center">
+          {locations.map((location: Weather) => {
+            return (
+              <WeatherDetail
+                key={location.name}
+                onFavClick={onFavClick}
+                weather={location}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
