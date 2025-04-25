@@ -12,9 +12,8 @@ const WeatherDetail = (props: weatherProps) => {
   const handleFavClick = () => {
     onFavClick(weather);
   };
-
   return (
-    <div className="w-max h-max text-center px-5 py-4 relative bg-white/30 border-2 rounded-tl-lg rounded-br-lg">
+    <div className="max-w-64 max-h-60 text-center px-5 py-4 relative bg-white/30 border-2 rounded-tl-lg rounded-br-lg">
       <div className="border-b-2 pb-4 flex flex-row justify-between h-24">
         <button onClick={handleFavClick}>
           {weather.fav ? (
@@ -32,7 +31,7 @@ const WeatherDetail = (props: weatherProps) => {
           {Math.round(weather.temp)} °C
         </div>
       </div>
-      <div className="h-max pt-2">
+      <div className="pt-2">
         <div className="text-3xl">{weather.name}</div>
         <div className="text-lg font-extralight italic">{weather.country}</div>
       </div>
