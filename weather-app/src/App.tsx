@@ -35,12 +35,11 @@ function App() {
 
   return (
     <div className="bg-gradient-to-bl from-white from-10% via-sky-300 via-30% to-sky-500 to-100% min-h-screen font-roboto flex flex-col items-center">
-      <h1 className="my-16 font-pacifico text-5xl">Better Weather</h1>
+      <h1 className="font-pacifico text-5xl mt-28 mb-16">Better Weather</h1>
       <SearchBar onSearch={searchLocation} placeholderText="search city" />
       {isLoading && <div>Loading...</div>}
       {error && <div>No data</div>}
       {weather && <WeatherDetail weather={weather} onFavClick={handelFav} />}
-      <WeatherList locations={favLocations} onFavClick={handelFav} />
     </div>
   );
 }
