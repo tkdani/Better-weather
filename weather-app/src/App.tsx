@@ -53,7 +53,11 @@ function App() {
           )}
         </>
       ) : (
-        <FavouritesPage locations={favLocations} onFavClick={handelFav} />
+        <FavouritesPage
+          onBackClick={handleMainPage}
+          locations={favLocations}
+          onFavClick={handelFav}
+        />
       )}
     </div>
   );
