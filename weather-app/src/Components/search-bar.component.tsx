@@ -1,5 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
-import Avatar from "@mui/material/Avatar";
+import SettingsIcon from "@mui/icons-material/Settings";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
 
 const SearchBar = (props: any) => {
@@ -36,19 +37,26 @@ const SearchBar = (props: any) => {
           <SearchIcon />
         </button>
       </div>
-      <button className="flex h-full items-center" onClick={handleMenuOpen}>
-        <Avatar className="m-1 max-w-9 max-h-9" />
-      </button>
-      <ul
-        className={`absolute right-0 top-12 text-center cursor-pointer bg-white/30 rounded-sm border-2 ${
-          isOpen ? "" : "hidden"
-        }`}
-      >
-        <button onClick={onMainPageClick}>
-          <li className="p-2 hover:bg-white/40">Favourites</li>
+      <div className="flex flex-row ">
+        <button className="p-2" onClick={onMainPageClick}>
+          <FavoriteIcon />
         </button>
-        <li className="p-2 hover:bg-white/40">Profile</li>
-      </ul>
+        <button
+          className="flex h-full items-center p-2"
+          onClick={handleMenuOpen}
+        >
+          <SettingsIcon className="" />
+        </button>
+        <ol
+          className={`absolute right-0 top-12 text-center cursor-pointer bg-white/30 rounded-sm border-2 ${
+            isOpen ? "" : "hidden"
+          }`}
+        >
+          <button>
+            <li className="p-2 hover:bg-white/40">Light/Dark</li>
+          </button>
+        </ol>
+      </div>
     </div>
   );
 };
