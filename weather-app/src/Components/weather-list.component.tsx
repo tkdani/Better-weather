@@ -2,13 +2,16 @@ import { Weather } from "../types/weather";
 import WeatherDetail from "./weather-detail.component";
 
 const WeatherList = (props: any) => {
-  const { locations, onFavClick } = props;
+  const { locations, onFavClick, onBackClick } = props;
   return (
     <div className="mt-15 w-11/12 h-max max-auto">
       <div className="w-full border-b-2">
-        <h1 className="bg-white/30 text-black w-max p-2 rounded-tl-xl hover:bg-white/50">
-          Favourites
-        </h1>
+        <button
+          onClick={onBackClick}
+          className="bg-white/30 hover:bg-white/50 p-2 rounded-tl-xl"
+        >
+          Back
+        </button>
       </div>
 
       {locations.length === 0 ? (
