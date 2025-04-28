@@ -19,8 +19,11 @@ const SearchBar = (props: any) => {
       handleSearch();
     }
   };
+  const handleMenuOpen = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <div className="relative w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2 rounded-sm mb-16">
+    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2 rounded-sm mb-16 relative">
       <div className="flex flex-row">
         <input
           type="search"
@@ -33,12 +36,16 @@ const SearchBar = (props: any) => {
           <SearchIcon />
         </button>
       </div>
-      <button className="flex h-full items-center">
+      <button className="flex h-full items-center" onClick={handleMenuOpen}>
         <Avatar className="m-1 max-w-9 max-h-9" />
       </button>
-      <ul className="absoulute left-0">
-        <li>Favourites</li>
-        <li>Profile</li>
+      <ul
+        className={`absolute right-0 top-12 text-center cursor-pointer bg-white/30 rounded-sm border-2 ${
+          isOpen ? "" : "hidden"
+        }`}
+      >
+        <li className="p-2 hover:bg-white/40">Favourites</li>
+        <li className="p-2 hover:bg-white/40">Profile</li>
       </ul>
     </div>
   );
