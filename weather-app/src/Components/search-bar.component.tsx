@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import { useState } from "react";
 
 const SearchBar = (props: any) => {
-  const { placeholderText, onSearch } = props;
+  const { placeholderText, onSearch, onMainPageClick } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +44,9 @@ const SearchBar = (props: any) => {
           isOpen ? "" : "hidden"
         }`}
       >
-        <li className="p-2 hover:bg-white/40">Favourites</li>
+        <button onClick={onMainPageClick}>
+          <li className="p-2 hover:bg-white/40">Favourites</li>
+        </button>
         <li className="p-2 hover:bg-white/40">Profile</li>
       </ul>
     </div>
