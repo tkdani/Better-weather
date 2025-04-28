@@ -6,14 +6,15 @@ const FavouritesPage = (props: WeatherListProp) => {
 
   return (
     <>
-      <h1 className="bg-white/30 text-black w-max p-2 mx-auto rounded-tl-xl rounded-br-sm text-2xl mb-10 uppercase font-light">
-        Favourites
-      </h1>
-      <WeatherList
-        locations={locations}
-        onFavClick={onFavClick}
-        onBackClick={onBackClick}
-      />
+      <div className="flex flex-row mb-10">
+        <button
+          onClick={onBackClick}
+          className="bg-white/30 hover:bg-white/50 rounded p-2 uppercase font-light"
+        >
+          Back
+        </button>
+      </div>
+      <WeatherList locations={locations} onFavClick={onFavClick} />
     </>
   );
 };
