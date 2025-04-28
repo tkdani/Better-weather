@@ -38,7 +38,9 @@ function App() {
   };
   return (
     <div className="bg-gradient-to-bl from-white from-10% via-sky-300 via-30% to-sky-500 to-100% min-h-screen font-roboto flex flex-col items-center">
-      <h1 className="font-pacifico text-5xl mt-28 mb-16">Better Weather</h1>
+      <h1 className="font-pacifico text-5xl mt-28 mb-16">
+        {onMainPage ? "Better Weather" : "Favourites"}
+      </h1>
       {onMainPage ? (
         <>
           <SearchBar
