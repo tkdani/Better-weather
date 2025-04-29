@@ -4,7 +4,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
 
 const SearchBar = (props: any) => {
-  const { placeholderText, onSearch, onMainPageClick } = props;
+  const { placeholderText, onSearch } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ const SearchBar = (props: any) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2 rounded-sm mb-16 relative">
+    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2  rounded-sm mb-16 relative">
       <div className="flex flex-row">
         <input
           type="search"
@@ -38,7 +38,7 @@ const SearchBar = (props: any) => {
         </button>
       </div>
       <div className="flex flex-row ">
-        <button className="p-2" onClick={onMainPageClick}>
+        <button className="p-2">
           <FavoriteIcon />
         </button>
         <button
