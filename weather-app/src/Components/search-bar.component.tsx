@@ -24,7 +24,7 @@ const SearchBar = (props: any) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2 rounded-sm mb-16 relative">
+    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2  rounded-sm mb-16 relative">
       <div className="flex flex-row">
         <input
           type="search"
