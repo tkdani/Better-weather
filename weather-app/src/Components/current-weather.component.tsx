@@ -6,7 +6,7 @@ interface weatherProps {
   weather: Weather;
   onFavClick: any;
 }
-const WeatherDetail = (props: weatherProps) => {
+const CurrentWeather = (props: weatherProps) => {
   const { weather, onFavClick } = props;
 
   const handleFavClick = () => {
@@ -39,4 +39,4 @@ const WeatherDetail = (props: weatherProps) => {
   );
 };
 
-export default WeatherDetail;
+export default CurrentWeather;

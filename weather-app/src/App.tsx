@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-import WeatherDetail from "./Components/weather-detail.component";
-import WeatherForecast from "./Components/weather-forecast.component";
+import Forecast from "./Components/forecast.component";
 import SearchBar from "./Components/search-bar.component";
 import useWeatherFetch from "./useWeatherFetch";
 import { Weather } from "./types/weather";
-import FavouritesPage from "./Components/favourites-page.component";
+import WeatherList from "./Components/weather-list.component";
+import Favouritepage from "./Components/favourites-page.component";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
   const [name, setName] = useState("Szombathely");
-  const [favLocations, setFavLocations] = useState<Weather[]>([]);
   const [onMainPage, setOnMainPage] = useState(true);
+  const [favLocations, setFavLocations] = useState<Weather[]>([]);
   const { weather, isLoading, error } = useWeatherFetch(name, apiKey);
 
   const searchLocation = (name: string) => {
@@ -34,15 +34,30 @@ function App() {
       weather.fav = !weather.fav;
     }
   };
+  const handleMainPage = () => {
+    setOnMainPage(!onMainPage);
+  };
   return (
     <div className="bg-gradient-to-bl from-white from-10% via-sky-300 via-30% to-sky-500 to-100% min-h-screen font-roboto flex flex-col items-center">
-      <h1 className="font-pacifico text-5xl">
-        {onMainPage ? "Better Weather" : "Favourites"}
-      </h1>
-      <SearchBar onSearch={searchLocation} placeholderText="Search city" />
-      {isLoading && <div>Loading...</div>}
-      {error && <div>No data for {name}</div>}
-      <WeatherForecast weather={weather} onFavClick={handelFav} />
+      <h1 className="font-pacifico text-5xl mt-8 mb-10">Better Weather</h1>
+      {onMainPage ? (
+        <>
+          <SearchBar
+            onSearch={searchLocation}
+            placeholderText="Search city"
+            onMainPage={handleMainPage}
+          />
+          {isLoading && <div>Loading...</div>}
+          {error && <div>No data for {name}</div>}
+          {weather && <Forecast weather={weather} onFavClick={handelFav} />}
+        </>
+      ) : (
+        <Favouritepage
+          favLocations={favLocations}
+          onFavClick={handelFav}
+          handleMainPage={handleMainPage}
+        />
+      )}
     </div>
   );
 }
