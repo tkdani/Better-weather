@@ -5,7 +5,6 @@ import SearchBar from "./Components/search-bar.component";
 import useWeatherFetch from "./useWeatherFetch";
 import { Weather } from "./types/weather";
 import WeatherList from "./Components/weather-list.component";
-import Favouritepage from "./Components/favourites-page.component";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
 
@@ -56,11 +55,7 @@ function App() {
           {weather && <Forecast weather={weather} onFavClick={handelFav} />}
         </>
       ) : (
-        <Favouritepage
-          favLocations={favLocations}
-          onFavClick={handelFav}
-          handleMainPage={handleMainPage}
-        />
+        <WeatherList locations={favLocations} onFavClick={handelFav} />
       )}
     </div>
   );
