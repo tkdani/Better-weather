@@ -13,7 +13,7 @@ const CurrentWeather = (props: weatherProps) => {
     onFavClick(weather);
   };
   return (
-    <div className="max-w-64 max-h-60 text-center px-5 py-4 relative bg-white/30 border-2 rounded-tl-lg rounded-br-lg">
+    <div className="w-56 h-52 text-center px-5 py-4 relative bg-white/30 border-2 rounded-tl-lg rounded-br-lg">
       <div className="border-b-2 pb-4 flex flex-row justify-between h-24">
         <button onClick={handleFavClick}>
           {weather.fav ? (
@@ -28,11 +28,13 @@ const CurrentWeather = (props: weatherProps) => {
           className="w-auto"
         />
         <div className="p-2 text-4xl font-medium flex items-center">
-          {Math.round(weather.temp)} °C
+          {Math.round(weather.temp)} <div className="text-2xl">°C</div>
         </div>
       </div>
       <div className="pt-2">
-        <div className="text-3xl">{weather.name}</div>
+        <div className={weather.name.length > 15 ? "text-xl" : "text-3xl"}>
+          {weather.name}
+        </div>
         <div className="text-lg font-extralight italic">{weather.country}</div>
       </div>
     </div>

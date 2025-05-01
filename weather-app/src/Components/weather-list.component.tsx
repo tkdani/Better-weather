@@ -10,7 +10,7 @@ const WeatherList = (props: WeatherListProp) => {
       {locations.length === 0 ? (
         <div className="ml-1 font-light italic">No favourites</div>
       ) : (
-        <div className="w-full grid grid-cols-5 gap-1">
+        <div className="w-full grid grid-cols-5 gap-10">
           {locations.map((location: Weather) => {
             return (
               <WeatherDetail

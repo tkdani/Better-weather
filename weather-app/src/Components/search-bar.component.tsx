@@ -1,10 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import { useState } from "react";
 
 const SearchBar = (props: any) => {
-  const { placeholderText, onSearch, onMainPage } = props;
+  const { placeholderText, onSearch, onMainPage, isOnMain, icon } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -24,22 +25,34 @@ const SearchBar = (props: any) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2  rounded-sm relative mb-8">
+    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2  rounded-sm relative mb-16">
       <div className="flex flex-row">
-        <input
-          type="search"
-          placeholder={placeholderText}
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          className="outline-none p-2 w-64 rounded-tl-sm rounded-bl-sm text-sm"
-        />
-        <button onClick={handleSearch} className="px-2 bg-white border-x-2">
-          <SearchIcon />
-        </button>
+        {isOnMain ? (
+          <>
+            <input
+              type="search"
+              placeholder={placeholderText}
+              onChange={handleInput}
+              onKeyDown={handleKeyDown}
+              className="outline-none p-2 w-64 rounded-tl-sm rounded-bl-sm text-sm"
+            />
+            <button onClick={handleSearch} className="px-2 bg-white border-x-2">
+              <SearchIcon />
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={onMainPage}
+            className="flex  border-r-2 hover:bg-white/30 items-center p-2"
+          >
+            <ArrowBackIcon />
+            Back
+          </button>
+        )}
       </div>
       <div className="flex flex-row ">
         <button className="p-2" onClick={onMainPage}>
-          <FavoriteIcon />
+          {icon}
         </button>
         <button
           className="flex h-full items-center p-2"
