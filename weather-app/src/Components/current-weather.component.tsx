@@ -28,7 +28,7 @@ const CurrentWeather = (props: weatherProps) => {
           className="w-auto"
         />
         <div className="p-2 text-4xl font-medium flex items-center">
-          {Math.round(weather.temp)}{" "}
+          {weather.temp}
           <span className="text-2xl font-normal">°C</span>
         </div>
       </div>

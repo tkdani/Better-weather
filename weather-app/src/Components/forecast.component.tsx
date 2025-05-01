@@ -26,32 +26,28 @@ const Forecast = (props: any) => {
           {weather.temp} <span className="text-2xl font-light">°C</span>
         </div>
       </div>
-      <div className="mt-3 w-full border-t-2 text-center font-extralight text-xs">
-        Forecast
+      <div className="flex flex-row justify-between mt-3 w-full border-b-2 text-center font-extralight text-xs">
+        <span>Min: {weather.temp_min}</span>
+        <span>Max: {weather.temp_max}</span>
+        <span>Feels like: {weather.feels_like}</span>
+        <span>{weather.description}</span>
+        <span>Prop: {weather.pop}</span>
       </div>
-      <div className="grid grid-cols-4 gap-2  p-2 w-full">
+      <div className="grid grid-cols-5 gap-2  p-2 w-full">
         {weather.forecast
-          .filter((_: any, index: any) => index % 8 === 0) // Assuming 3-hour intervals, 8 intervals per day
-          .slice(1, 5) // Limit to 5 days
+          .filter((day: any) => new Date(day.dt).getHours() === 15) // Filter for data at 3:00 PM
+          .slice(0, 5) // Limit to 5 days
           .map((day: any, index: number) => (
             <div
               key={index}
               className="flex flex-col items-center mb-2 border-2 rounded-xl p-2"
             >
               <div>
-                <div className="flex flex-col items-center">
-                  <span className="font-light">
-                    {new Date(day.dt).toLocaleString("hu-HU", {
-                      month: "2-digit",
-                      day: "2-digit",
-                    })}
-                  </span>
-                  <span className="font-normal">
-                    {new Date(day.dt).toLocaleString("hu-HU", {
-                      weekday: "short",
-                    })}
-                  </span>
-                </div>
+                <span className="font-normal">
+                  {new Date(day.dt).toLocaleString("hu-HU", {
+                    weekday: "short",
+                  })}
+                </span>
               </div>
               <img
                 className="w-8 py-1"
@@ -59,8 +55,17 @@ const Forecast = (props: any) => {
                 alt="weather icon"
               />
               <div>
-                {day.temp}
+                {Math.round(day.temp)}
                 <span className="font-extralight text-xs pl-1">°C</span>
+              </div>
+              <div className="text-sm font-extralight italic">
+                <span className="text-xs font-extralight italic">
+                  {day.temp_min + " "}
+                </span>
+                /
+                <span className="text-xs font-extralight italic">
+                  {" " + day.temp_max}
+                </span>
               </div>
             </div>
           ))}
