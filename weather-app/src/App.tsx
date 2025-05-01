@@ -6,6 +6,8 @@ import useWeatherFetch from "./useWeatherFetch";
 import { Weather } from "./types/weather";
 import WeatherList from "./Components/weather-list.component";
 import Favouritepage from "./Components/favourites-page.component";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import HomeIcon from "@mui/icons-material/Home";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -39,14 +41,16 @@ function App() {
   };
   return (
     <div className="bg-gradient-to-bl from-white from-10% via-sky-300 via-30% to-sky-500 to-100% min-h-screen font-roboto flex flex-col items-center">
-      <h1 className="font-pacifico text-5xl mt-8 mb-10">Better Weather</h1>
+      <h1 className="font-pacifico text-5xl mt-10 mb-16">Better Weather</h1>
+      <SearchBar
+        onSearch={searchLocation}
+        placeholderText="Search city"
+        onMainPage={handleMainPage}
+        isOnMain={onMainPage}
+        icon={onMainPage ? <FavoriteIcon /> : <HomeIcon />}
+      />
       {onMainPage ? (
         <>
-          <SearchBar
-            onSearch={searchLocation}
-            placeholderText="Search city"
-            onMainPage={handleMainPage}
-          />
           {isLoading && <div>Loading...</div>}
           {error && <div>No data for {name}</div>}
           {weather && <Forecast weather={weather} onFavClick={handelFav} />}
