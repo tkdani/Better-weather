@@ -6,6 +6,42 @@ const Forecast = (props: any) => {
   const handleFavClick = () => {
     onFavClick(weather);
   };
+
+  const groupAndAverageForecast = (forecast: any[]) => {
+    const grouped: { [key: string]: any[] } = {};
+
+    forecast.forEach((entry) => {
+      const date = new Date(entry.dt).toISOString().split("T")[0]; // Extract date part
+      if (!grouped[date]) {
+        grouped[date] = [];
+      }
+      grouped[date].push(entry);
+    });
+
+    return Object.keys(grouped).map((date) => {
+      const dayData = grouped[date];
+      const avgTemp =
+        dayData.reduce((sum, item) => sum + item.temp, 0) / dayData.length;
+      const tempMin = Math.min(...dayData.map((item) => item.temp_min));
+      const tempMax = Math.max(...dayData.map((item) => item.temp_max));
+      const avgPop =
+        dayData.reduce((sum: any, item: any) => sum + item.pop, 0) /
+        dayData.length;
+
+      return {
+        date,
+        temp: Math.round(avgTemp),
+        temp_min: tempMin,
+        temp_max: tempMax,
+        pop: Math.round(avgPop),
+        icon: dayData[0].icon, // Use the first icon of the day
+        description: dayData[0].description,
+      };
+    });
+  };
+
+  const averagedForecast = groupAndAverageForecast(weather.forecast);
+
   return (
     <div className="relative bg-white/30 rounded-tl-lg rounded-br-lg border-2 p-3 flex flex-col items-center">
       <div className="text-4xl font-normal p-2">{weather.name}</div>
@@ -27,48 +63,42 @@ const Forecast = (props: any) => {
         </div>
       </div>
       <div className="flex flex-row justify-between mt-3 w-full border-b-2 text-center font-extralight text-xs">
-        <span>Min: {weather.temp_min}</span>
-        <span>Max: {weather.temp_max}</span>
         <span>Feels like: {weather.feels_like}</span>
         <span>{weather.description}</span>
-        <span>Prop: {weather.pop}</span>
       </div>
-      <div className="grid grid-cols-5 gap-2  p-2 w-full">
-        {weather.forecast
-          .filter((day: any) => new Date(day.dt).getHours() === 15) // Filter for data at 3:00 PM
-          .slice(0, 5) // Limit to 5 days
-          .map((day: any, index: number) => (
-            <div
-              key={index}
-              className="flex flex-col items-center mb-2 border-2 rounded-xl p-2"
-            >
-              <div>
-                <span className="font-normal">
-                  {new Date(day.dt).toLocaleString("hu-HU", {
-                    weekday: "short",
-                  })}
-                </span>
-              </div>
-              <img
-                className="w-8 py-1"
-                src={`/Assets/weather-icons/${day.icon}.svg`}
-                alt="weather icon"
-              />
-              <div>
-                {Math.round(day.temp)}
-                <span className="font-extralight text-xs pl-1">°C</span>
-              </div>
-              <div className="text-sm font-extralight italic">
-                <span className="text-xs font-extralight italic">
-                  {day.temp_min + " "}
-                </span>
-                /
-                <span className="text-xs font-extralight italic">
-                  {" " + day.temp_max}
-                </span>
-              </div>
+      <div className="grid grid-cols-4 gap-2 p-2 w-full">
+        {averagedForecast.slice(1, 5).map((day: any, index: number) => (
+          <div
+            key={index}
+            className="flex flex-col items-center mb-2 border-2 rounded-xl p-2"
+          >
+            <div>
+              <span className="font-normal">
+                {new Date(day.date).toLocaleString("hu-HU", {
+                  weekday: "short",
+                })}
+              </span>
             </div>
-          ))}
+            <img
+              className="w-8 py-1"
+              src={`/Assets/weather-icons/${day.icon}.svg`}
+              alt="weather icon"
+            />
+            <div>
+              {day.temp}
+              <span className="font-extralight text-xs pl-1">°C</span>
+            </div>
+            <div className="text-sm font-extralight italic">
+              <span className="text-xs font-extralight italic">
+                {day.temp_min + " "}
+              </span>
+              /
+              <span className="text-xs font-extralight italic">
+                {" " + day.temp_max}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
