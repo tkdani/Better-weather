@@ -8,8 +8,6 @@ interface weatherData {
   };
   main: {
     temp: number;
-    temp_min: number;
-    temp_max: number;
     feels_like: number;
   };
   weather: {
@@ -18,7 +16,6 @@ interface weatherData {
       description: string;
     };
   };
-  pop: number;
 }
 interface WeatherForecastData {
   list: {
@@ -62,12 +59,9 @@ const useWeatherFetch = (name: string, apiKey: string | undefined) => {
           name: data.name,
           country: data.sys.country,
           temp: Math.round(data.main.temp),
-          temp_min: Math.round(data.main.temp_min),
-          temp_max: Math.round(data.main.temp_max),
           feels_like: Math.round(data.main.feels_like),
           icon: data.weather[0].icon,
           description: data.weather[0].description,
-          pop: data.pop,
           fav: false,
           forecast: [], // Placeholder, will be updated after fetching forecast
         };
