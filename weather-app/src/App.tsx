@@ -35,6 +35,10 @@ function App() {
       weather.fav = !weather.fav;
     }
   };
+  const handlePin = (city: string) => {
+    setOnMainPage(!onMainPage);
+    setName(city);
+  };
   const handleMainPage = () => {
     setOnMainPage(!onMainPage);
   };
@@ -55,7 +59,11 @@ function App() {
           {weather && <Forecast weather={weather} onFavClick={handelFav} />}
         </>
       ) : (
-        <WeatherList locations={favLocations} onFavClick={handelFav} />
+        <WeatherList
+          onPinClick={handlePin}
+          locations={favLocations}
+          onFavClick={handelFav}
+        />
       )}
     </div>
   );
