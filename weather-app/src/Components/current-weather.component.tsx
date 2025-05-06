@@ -1,34 +1,32 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import PushPinIcon from "@mui/icons-material/PushPin";
-import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import { Weather } from "../types/weather";
 
 interface weatherProps {
   weather: Weather;
   onFavClick: any;
   onPinClick: any;
+  icon: any;
 }
 const CurrentWeather = (props: weatherProps) => {
-  const { onPinClick, weather, onFavClick } = props;
+  const { onPinClick, weather, onFavClick, icon } = props;
 
   const handleFavClick = () => {
     onFavClick(weather);
   };
-  const handlePinClick = () => {
+  const handleOnPinClick = () => {
     onPinClick(weather.name);
   };
   return (
     <div className="w-56 h-52 text-center px-5 py-4 relative bg-white/30 border-2 rounded-tl-lg rounded-br-lg">
       <div className="border-b-2 pb-4 flex flex-row justify-between h-24">
-        <button onClick={handlePinClick}>{weather.name}</button>
-        <button onClick={handleFavClick}>
-          {weather.fav ? (
-            <FavoriteIcon className="absolute right-1 top-1" />
-          ) : (
-            <FavoriteBorderIcon className="absolute right-1 top-1" />
-          )}
-        </button>
+        <div className="absolute right-1 top-1">
+          <button onClick={handleOnPinClick}>{icon}</button>
+          <button onClick={handleFavClick}>
+            {weather.fav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </button>
+        </div>
+
         <img
           src={`/Assets/weather-icons/${weather.icon}.svg`}
           alt="weather icon"

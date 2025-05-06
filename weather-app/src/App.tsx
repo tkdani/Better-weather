@@ -35,10 +35,6 @@ function App() {
       weather.fav = !weather.fav;
     }
   };
-  const handlePin = (city: string) => {
-    setOnMainPage(!onMainPage);
-    setName(city);
-  };
   const handleMainPage = () => {
     setOnMainPage(!onMainPage);
   };
@@ -60,9 +56,10 @@ function App() {
         </>
       ) : (
         <WeatherList
-          onPinClick={handlePin}
+          onPinClick={searchLocation}
           locations={favLocations}
           onFavClick={handelFav}
+          pinnedWeather={name}
         />
       )}
     </div>

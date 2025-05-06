@@ -63,7 +63,7 @@ const useWeatherFetch = (name: string, apiKey: string | undefined) => {
           icon: data.weather[0].icon,
           description: data.weather[0].description,
           fav: false,
-          forecast: [], // Placeholder, will be updated after fetching forecast
+          forecast: [],
         };
 
         fetch(
