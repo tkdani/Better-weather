@@ -7,6 +7,7 @@ import { Weather } from "./types/weather";
 import WeatherList from "./Components/weather-list.component";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
+import PinnedWeather from "./Components/pinned-weather.component";
 
 function App() {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -45,6 +46,7 @@ function App() {
   return (
     <div className="bg-gradient-to-bl from-white from-10% via-sky-300 via-30% to-sky-500 to-100% min-h-screen font-roboto flex flex-col items-center">
       <h1 className="font-pacifico text-5xl mt-10 mb-16">Better Weather</h1>
+      <PinnedWeather />
       <SearchBar
         onSearch={searchLocation}
         placeholderText="Search city"
