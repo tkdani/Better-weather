@@ -62,6 +62,7 @@ function App() {
         </>
       ) : (
         <WeatherList locations={favLocations} onFavClick={handelFav} />
+
       )}
     </div>
   );

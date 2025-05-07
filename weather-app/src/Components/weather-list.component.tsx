@@ -1,8 +1,6 @@
 import { Weather } from "../types/weather";
 import { WeatherListProp } from "../types/WeatherListProp";
 import WeatherDetail from "./current-weather.component";
-import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
-import PushPinIcon from "@mui/icons-material/PushPinOutlined";
 
 const WeatherList = (props: WeatherListProp) => {
   const { locations, onFavClick } = props;
