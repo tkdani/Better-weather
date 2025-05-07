@@ -59,7 +59,6 @@ function App() {
           onPinClick={searchLocation}
           locations={favLocations}
           onFavClick={handelFav}
-          pinnedWeather={name}
         />
       )}
     </div>
