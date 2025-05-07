@@ -17,7 +17,6 @@ const WeatherList = (props: WeatherListProp) => {
                 key={location.name}
                 onFavClick={onFavClick}
                 weather={location}
-                onPinClick={onPinClick}
               />
             );
           })}
