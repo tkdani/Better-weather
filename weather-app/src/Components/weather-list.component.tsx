@@ -5,7 +5,7 @@ import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import PushPinIcon from "@mui/icons-material/PushPinOutlined";
 
 const WeatherList = (props: WeatherListProp) => {
-  const { onPinClick, locations, onFavClick, pinnedWeather } = props;
+  const { locations, onFavClick } = props;
   return (
     <div className="mt-15 w-11/12 h-max max-auto">
       <h2 className="font-light border-b-2 w-full mb-2">Favourites</h2>
@@ -19,14 +19,6 @@ const WeatherList = (props: WeatherListProp) => {
                 key={location.name}
                 onFavClick={onFavClick}
                 weather={location}
-                onPinClick={onPinClick}
-                icon={
-                  pinnedWeather === location.name ? (
-                    <PushPinIcon />
-                  ) : (
-                    <PushPinOutlinedIcon />
-                  )
-                }
               />
             );
           })}
