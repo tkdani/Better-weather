@@ -13,7 +13,11 @@ function App() {
   const [name, setName] = useState("Szombathely");
   const [onMainPage, setOnMainPage] = useState(true);
   const [favLocations, setFavLocations] = useState<Weather[]>([]);
-  const { weather, isLoading, error } = useWeatherFetch(name, apiKey);
+  const { weather, isLoading, error } = useWeatherFetch(
+    name,
+    apiKey,
+    favLocations
+  );
 
   const searchLocation = (name: string) => {
     setName(name);

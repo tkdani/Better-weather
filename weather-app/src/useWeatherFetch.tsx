@@ -35,7 +35,11 @@ interface WeatherForecastData {
     pop: number;
   }[];
 }
-const useWeatherFetch = (name: string, apiKey: string | undefined) => {
+const useWeatherFetch = (
+  name: string,
+  apiKey: string | undefined,
+  favLocations: Weather[]
+) => {
   const [weather, setWeather] = useState<Weather | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -55,6 +59,8 @@ const useWeatherFetch = (name: string, apiKey: string | undefined) => {
         return response.json();
       })
       .then((data: weatherData) => {
+        const isFav = favLocations.some((loc) => loc.name === data.name);
+
         const transformedWeather: Weather = {
           name: data.name,
           country: data.sys.country,
@@ -62,7 +68,7 @@ const useWeatherFetch = (name: string, apiKey: string | undefined) => {
           feels_like: Math.round(data.main.feels_like),
           icon: data.weather[0].icon,
           description: data.weather[0].description,
-          fav: false,
+          fav: isFav,
           forecast: [],
         };
 
