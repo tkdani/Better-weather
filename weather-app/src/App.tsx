@@ -59,7 +59,11 @@ function App() {
           {weather && <Forecast weather={weather} onFavClick={handelFav} />}
         </>
       ) : (
-        <WeatherList locations={favLocations} onFavClick={handelFav} />
+        <WeatherList
+          onPinClick={searchLocation}
+          locations={favLocations}
+          onFavClick={handelFav}
+        />
       )}
     </div>
   );

@@ -11,6 +11,7 @@ interface weatherProps {
 }
 const CurrentWeather = (props: weatherProps) => {
   const { weather, onFavClick, icon, onSearchClick } = props;
+}
 
   const handleFavClick = () => {
     onFavClick(weather);
