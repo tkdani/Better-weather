@@ -63,7 +63,13 @@ function App() {
         <>
           {isLoading && <div>Loading...</div>}
           {error && <div>No data for {name}</div>}
-          {weather && <Forecast weather={weather} onFavClick={handelFav} />}
+          {weather && (
+            <Forecast
+              weather={weather}
+              onFavClick={handelFav}
+              onPinClick={setWeatherPin}
+            />
+          )}
         </>
       ) : (
         <WeatherList
