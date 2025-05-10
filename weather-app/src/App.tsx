@@ -13,7 +13,6 @@ function App() {
   const [name, setName] = useState("Szombathely");
   const [onMainPage, setOnMainPage] = useState(true);
   const [favLocations, setFavLocations] = useState<Weather[]>([]);
-  const [pinnedWeather, setPinnedWeather] = useState<Weather | null>(null);
   const { weather, isLoading, error } = useWeatherFetch(
     name,
     apiKey,
@@ -64,6 +63,7 @@ function App() {
           onPinClick={searchLocation}
           locations={favLocations}
           onFavClick={handelFav}
+          pinnedWeather={name}
         />
       )}
     </div>

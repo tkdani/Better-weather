@@ -1,9 +1,11 @@
 import { Weather } from "../types/weather";
 import { WeatherListProp } from "../types/WeatherListProp";
 import CurrentWeather from "./current-weather.component";
+import PushPinIcon from "@mui/icons-material/PushPin";
+import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 
 const WeatherList = (props: WeatherListProp) => {
-  const { locations, onFavClick } = props;
+  const { locations, onFavClick, onPinClick, pinnedWeather } = props;
 
   return (
     <div className="mt-15 w-11/12 h-max max-auto">
@@ -18,6 +20,14 @@ const WeatherList = (props: WeatherListProp) => {
                 key={location.name}
                 onFavClick={onFavClick}
                 weather={location}
+                onPinClick={onPinClick}
+                pinIcon={
+                  pinnedWeather === location.name ? (
+                    <PushPinIcon />
+                  ) : (
+                    <PushPinOutlinedIcon />
+                  )
+                }
               />
             );
           })}
