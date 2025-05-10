@@ -1,11 +1,8 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
-import PushPinIcon from "@mui/icons-material/PushPinOutlined";
-import { Button } from "@mui/material";
 
 const Forecast = (props: any) => {
-  const { weather, onFavClick, onPinClick } = props;
+  const { weather, onFavClick } = props;
   const handleFavClick = () => {
     onFavClick(weather);
   };
@@ -45,16 +42,9 @@ const Forecast = (props: any) => {
 
   const averagedForecast = groupAndAverageForecast(weather.forecast);
 
-  const handlePinClick = () => {
-    onPinClick(weather);
-  };
-
   return (
     <div className="relative bg-white/30 rounded-tl-lg rounded-br-lg border-2 p-3 flex flex-col items-center">
       <div className="text-4xl font-normal p-2">{weather.name}</div>
-      <Button onClick={handlePinClick}>
-        <PushPinIcon className="absolute right-1 top-1" />
-      </Button>
       <button onClick={handleFavClick}>
         {weather.fav ? (
           <FavoriteIcon className="absolute right-1 top-1" />
