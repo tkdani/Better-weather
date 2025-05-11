@@ -20,6 +20,12 @@ const Forecast = (props: any) => {
 
     return Object.keys(grouped).map((date) => {
       const dayData = grouped[date];
+      const noonEntry = dayData.find((entry) => {
+        const entryHour = new Date(entry.dt).getUTCHours();
+        return entryHour === 13;
+      });
+      const tempOnTime = noonEntry ? noonEntry.temp : null;
+      const iconOnTime = noonEntry ? noonEntry.icon : dayData[0].icon;
       const avgTemp =
         dayData.reduce((sum, item) => sum + item.temp, 0) / dayData.length;
       const tempMin = Math.min(...dayData.map((item) => item.temp_min));
@@ -30,11 +36,12 @@ const Forecast = (props: any) => {
 
       return {
         date,
-        temp: Math.round(avgTemp),
+        temp: tempOnTime,
+        temp_avg: Math.round(avgTemp),
         temp_min: tempMin,
         temp_max: tempMax,
         pop: Math.round(avgPop),
-        icon: dayData[0].icon, // Use the first icon of the day
+        icon: iconOnTime,
         description: dayData[0].description,
       };
     });
