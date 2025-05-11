@@ -2,13 +2,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SearchBar = (props: any) => {
   const { placeholderText, onSearch, onMainPage, isOnMain, icon } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleInput = (event: any) => {
     setInputValue(event.target.value);
@@ -24,8 +25,23 @@ const SearchBar = (props: any) => {
   const handleMenuOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      setIsOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2  rounded-sm relative mb-16">
+    <div
+      ref={menuRef}
+      className="w-1/2 h-12 flex flex-row justify-between bg-white/60 border-2  rounded-sm relative mb-16"
+    >
       <div className="flex flex-row">
         {isOnMain ? (
           <>
